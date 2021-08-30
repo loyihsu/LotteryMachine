@@ -7,25 +7,44 @@
 public class LotteryMatchers {
     private static let machine = LotteryMachine()
 
-    public static func match539Results(myNumbers: String) {
+    public static func match539Results(term: String? = nil, myNumbers: String) {
         print("")
-        let fiveThreeNine = FiveThreeNine(answer: machine.get539Answers(), mine: myNumbers)
+        let result = machine.get539Answers()
+
+        if let inputTerm = term, "第 \(inputTerm) 期" != result.0 {
+            print("非本期號碼 (第 \(inputTerm) 期 != \(result.0))")
+            return
+        }
+
+        let fiveThreeNine = FiveThreeNine(answer: result.1, mine: myNumbers)
         print("你的號碼：\(myNumbers.toIntArray())")
         print("//////////////////// \(fiveThreeNine.results) ////////////////////")
     }
 
-    public static func matchLotteryResults(myNumbers: String) {
+    public static func matchLotteryResults(term: String? = nil, myNumbers: String) {
         print("")
-        let lotteryAnswer = machine.getLotteryAnswers()
-        let lottery = BigLottery(answer: lotteryAnswer.0, spAnswer: Int(lotteryAnswer.1)!, mine: myNumbers)
+        let result = machine.getLotteryAnswers()
+
+        if let inputTerm = term, "第 \(inputTerm) 期" != result.0 {
+            print("非本期號碼 (第 \(inputTerm) 期 != \(result.0))")
+            return
+        }
+
+        let lottery = BigLottery(answer: result.1, spAnswer: Int(result.2)!, mine: myNumbers)
         print("你的號碼：\(myNumbers.toIntArray())")
         print("//////////////////// \(lottery.result) ////////////////////")
     }
 
-    public static func matchPowerResults(myNumbers: String, myArea: String) {
+    public static func matchPowerResults(term: String? = nil, myNumbers: String, myArea: String) {
         print("")
-        let powerAnswer = machine.getPowerAnswers()
-        let power = PowerLottery(answer: powerAnswer.0, spAnswer: Int(powerAnswer.1)!, mine: myNumbers, spMine: Int(myArea)!)
+        let result = machine.getPowerAnswers()
+
+        if let inputTerm = term, "第 \(inputTerm) 期" != result.0 {
+            print("非本期號碼 (第 \(inputTerm) 期 != \(result.0))")
+            return
+        }
+
+        let power = PowerLottery(answer: result.1, spAnswer: Int(result.2)!, mine: myNumbers, spMine: Int(myArea)!)
         print("你的第一區：\(myNumbers.toIntArray())")
         print("你的第二區：\(myArea)")
         print("//////////////////// \(power.result) ///////////////////")

@@ -26,7 +26,7 @@ class LotteryMachine {
         //}
     }
 
-    func getPowerAnswers() -> (String, String) {
+    func getPowerAnswers() -> (String, String, String) {
         let name = tmpResults[1], date = tmpResults[5], term = tmpResults[3]
         var tempAnswer = [tmpResults[9]]
         tempAnswer = tempAnswer[0]
@@ -36,10 +36,10 @@ class LotteryMachine {
         print("\(name) (\(term): \(date))")
         print("第一區：\(tempAnswer[0].toIntArray())")
         print("第二區：\(tempAnswer[1])")
-        return (tempAnswer[0], tempAnswer[1])
+        return (term, tempAnswer[0], tempAnswer[1])
     }
 
-    func getLotteryAnswers() -> (String, String) {
+    func getLotteryAnswers() -> (String, String, String) {
         let name = tmpResults[86], term = tmpResults[88], date = tmpResults[90]
         var tempAnswer = [tmpResults[94]]
         tempAnswer = tempAnswer[0]
@@ -49,16 +49,16 @@ class LotteryMachine {
         print("\(name) (\(term): \(date))")
         print("獎號：\(tempAnswer[0].toIntArray())")
         print("特別號：\(tempAnswer[1])")
-        return (tempAnswer[0], tempAnswer[1])
+        return (term, tempAnswer[0], tempAnswer[1])
     }
 
-    func get539Answers() -> String {
+    func get539Answers() -> (String, String) {
         let name = tmpResults[159], term = tmpResults[161], date = tmpResults[163]
         var tempAnswer = [tmpResults[167]]
         tempAnswer = [tempAnswer[0].components(separatedBy: "依大小順序排列： ").joined()
             .components(separatedBy: "   依開出順序排列： ").first!]
         print("\(name) (\(term): \(date))")
         print("獎號：\(tempAnswer[0].toIntArray())")
-        return tempAnswer[0]
+        return (term, tempAnswer[0])
     }
 }
