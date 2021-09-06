@@ -21,14 +21,15 @@ class LotteryMachine {
             }
         }
 
-        //for (idx, val) in tmpResults.enumerated() {
-        //    print("\(idx) : \(val)")
-        //}
+        // for (idx, val) in tmpResults.enumerated() {
+        //     print("\(idx) : \(val)")
+        // }
     }
 
     func getPowerAnswers() -> (String, String, String) {
-        let name = tmpResults[1], date = tmpResults[5], term = tmpResults[3]
-        var tempAnswer = [tmpResults[9]]
+        let firstIndex = tmpResults.firstIndex(of: "威力彩")!
+        let name = tmpResults[firstIndex], term = tmpResults[firstIndex+2], date = tmpResults[firstIndex+4]
+        var tempAnswer = [tmpResults[firstIndex+8]]
         tempAnswer = tempAnswer[0]
             .components(separatedBy: "第1區 依大小順序排列：").joined()
             .components(separatedBy: " 第1區 依開出順序排列").first!
@@ -40,8 +41,9 @@ class LotteryMachine {
     }
 
     func getLotteryAnswers() -> (String, String, String) {
-        let name = tmpResults[86], term = tmpResults[88], date = tmpResults[90]
-        var tempAnswer = [tmpResults[94]]
+        let firstIndex = tmpResults.firstIndex(of: "大樂透")!
+        let name = tmpResults[firstIndex], term = tmpResults[firstIndex+2], date = tmpResults[firstIndex+4]
+        var tempAnswer = [tmpResults[firstIndex+8]]
         tempAnswer = tempAnswer[0]
             .components(separatedBy: "依大小順序排列：").joined()
             .components(separatedBy: " 依開出順序排列：").first!
@@ -53,8 +55,9 @@ class LotteryMachine {
     }
 
     func get539Answers() -> (String, String) {
-        let name = tmpResults[159], term = tmpResults[161], date = tmpResults[163]
-        var tempAnswer = [tmpResults[167]]
+        let firstIndex = tmpResults.firstIndex(of: "今彩539")!
+        let name = tmpResults[firstIndex], term = tmpResults[firstIndex+2], date = tmpResults[firstIndex+4]
+        var tempAnswer = [tmpResults[firstIndex+8]]
         tempAnswer = [tempAnswer[0].components(separatedBy: "依大小順序排列： ").joined()
             .components(separatedBy: "   依開出順序排列： ").first!]
         print("\(name) (\(term): \(date))")
