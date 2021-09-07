@@ -20,10 +20,6 @@ class LotteryMachine {
                 }
             }
         }
-
-        // for (idx, val) in tmpResults.enumerated() {
-        //     print("\(idx) : \(val)")
-        // }
     }
 
     func getPowerAnswers() -> (String, String, String) {
