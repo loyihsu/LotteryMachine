@@ -19,11 +19,18 @@ public class LimitedSpecialLottery {
         // }
     }
 
-    public func check(myNumbers: String) -> Bool {
+    public func check(myNumbers: String) {
         let index = tmpResults.firstIndex(of: "大小順序")!
         let values = tmpResults[index+1...index+9].map({ Int($0)! })
         let numbers = myNumbers.toIntArray()
 
-        return values.filter({ numbers.contains($0) }).count == 6
+        print("大樂透加碼號碼：\(values)")
+
+        let count = values.filter({ numbers.contains($0) }).count
+        if count == 6 {
+            print("//////////////////// 中獎了 ////////////////////")
+        } else {
+            print("/////// 一共中了 \(count) 個號碼，再接再厲！ ///////")
+        }
     }
 }

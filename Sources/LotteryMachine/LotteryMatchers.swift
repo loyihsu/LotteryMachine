@@ -6,6 +6,7 @@
 
 public class LotteryMatchers {
     private static let machine = LotteryMachine()
+    private static let special = LimitedSpecialLottery()
 
     public static func match539Results(term: String? = nil, myNumbers: String) {
         print("")
@@ -75,4 +76,7 @@ public class LotteryMatchers {
         print("//////////////////// \(power.result) ///////////////////")
     }
 
+    public static func specialLotteryMatcher(myNumbers: String) {
+        special.check(myNumbers: myNumbers)
+    }
 }
